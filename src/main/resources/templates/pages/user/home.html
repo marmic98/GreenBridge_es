@@ -35,7 +35,7 @@
                     $("#esito").append("<p> " +newUser.email+ " </p>")
                 },
                 error: function (error) {
-                    console.log(error)
+                    console.error(error)
                     $("#esito").text("Utente gia esistente")
                 }
             });
