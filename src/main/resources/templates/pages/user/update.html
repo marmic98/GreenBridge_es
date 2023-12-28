@@ -1,0 +1,46 @@
+<!--@author Alfieri Davide-->
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>Registrati</title>
+</head>
+<body>
+    <h1>aggiorna!</h1>
+
+    <form>
+        <label for="email">email</label>
+        <input type="email" id="email">
+        <label for="psw">password</label>
+        <input type="password" id="psw">
+        <button type="button" onclick="submitForm()">Iscriviti!</button>
+    </form>
+
+    <div id="esito"></div>
+
+    <script th:inline="javascript">
+        function submitForm() {
+            let newUser = {
+                email: document.getElementById('email').value,
+                psw: document.getElementById('psw').value
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/update-user',
+                contentType: 'application/json',
+                data: JSON.stringify(newUser),
+                success: function (response) {
+                    console.log(response)
+                    $("#esito").append("<p> " +newUser.email+ " </p>")
+                },
+                error: function (error) {
+                    console.error(error)
+                    $("#esito").text("Utente non esistente")
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

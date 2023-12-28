@@ -26,5 +26,13 @@ public class RestNotaController {
         return new ResponseEntity<>("Tutto ok",HttpStatus.CREATED);
     }
 
+    @PostMapping("/update-user")
+    public ResponseEntity<String> updateUser(@RequestBody User user){
+        if (!userService.userExistsByMail(user))
+            return new ResponseEntity<>("already in db",HttpStatus.NOT_FOUND);
+        userService.updateUser(user);
+        return new ResponseEntity<>("Tutto ok",HttpStatus.OK);
+    }
+
     
 }

@@ -20,6 +20,12 @@ public class UserService {
     public void saveUser(User user){
         userRepository.save(user);
     }
+
+    public void updateUser(User user){
+        User newUser = userRepository.findByEmail(user.getEmail());
+        newUser.setPsw(user.getPsw());
+        userRepository.save(newUser);
+    }
     public List<User> getAllUsers () {
         return userRepository.findAll();
     }

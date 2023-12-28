@@ -21,8 +21,14 @@ public class NotaController {
     private NotaService notaService;
 
     @GetMapping("/home")
-    public String getNotes(Model model) {
+    public String saveView(Model model) {
         model.addAttribute("user", new User());
         return "pages/user/home";
+    }
+
+    @GetMapping("/update")
+    public String updateView(Model model) {
+        model.addAttribute("user", new User());
+        return "pages/user/update";
     }
 }
